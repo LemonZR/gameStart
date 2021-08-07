@@ -102,7 +102,7 @@ def main():
         clock.tick(FPS)
         pygame.display.update()
 
-
-main()
-pygame.quit()
-quit()
+if __name__ == '__main__':
+    main()
+    pygame.quit()
+    quit()
