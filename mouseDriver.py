@@ -26,10 +26,12 @@ def main():
     car_group = pygame.sprite.Group()  # Make a group
 
     player = moveSprite.Car()
+    player2 = moveSprite.Car()
 
     player.set_img("bilibili.ico")
+    player2.set_img("bilibili.ico")
+    car_group.add(player,player2)
 
-    car_group.add(player)
 
     go_exit = False
 
