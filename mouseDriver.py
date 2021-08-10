@@ -1,4 +1,5 @@
 import os, pygame
+import math
 
 from pygame.locals import *
 
@@ -26,18 +27,39 @@ def main():
     car_group = pygame.sprite.Group()  # Make a group
 
     player = moveSprite.Car()
-    player2 = moveSprite.Car()
+    player_test = moveSprite.Car()
+    player_test2 = moveSprite.Car()
+    player_test.set_img('bilibili.ico')
+    player_test2.set_img('bilibili.ico')
+    players = [moveSprite.Car() for i in range(10)]
 
     player.set_img("bilibili.ico")
-    player2.set_img("bilibili.ico")
-    car_group.add(player,player2)
-
+    for num, other_player in enumerate(players):
+        other_player.set_img("bilibili.ico")
+    car_group.add(player)
+    car_group.add(player_test)
+    car_group.add(player_test2)
+    car_group.add(*players)
 
     go_exit = False
 
     FPS = 60
+    time = 0
+    mouse_x = 0
+    mouse_y = 0
+    x_test =0
+    x_test2 =0
 
     while 1:
+        time += 1
+        x_test+=0.1
+        x_test2 += 0.2
+        player_test.set_pos(x_test,100)
+        player_test2.set_pos(x_test2, 110)
+        if time >= screenh:
+            time = 0
+        for n, other_player in enumerate(players):
+            other_player.set_pos(mouse_x + n * 100, mouse_y + time)
 
         for event in pygame.event.get():
 
@@ -75,6 +97,7 @@ def main():
 
                 mouse_y = pos[1]
                 player.set_pos(mouse_x, mouse_y)  # Blit the player to the screen
+
         screen.fill(black)
         car_group.draw(screen)
         clock.tick(FPS)

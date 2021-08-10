@@ -20,10 +20,10 @@ pygame.display.set_caption("Game")  # Here I create a display.
 clock = pygame.time.Clock()
 
 
-class Car(pygame.sprite.Sprite):  # Here I create a class.
+class Car(pygame.sprite.DirtySprite):  # Here I create a class.
 
     def __init__(self, color=black, width=100, height=100):
-        pygame.sprite.Sprite.__init__(self)
+        pygame.sprite.DirtySprite.__init__(self)
 
         self.image = pygame.Surface((width, height))
 
@@ -80,27 +80,30 @@ def main():
                 elif event.key == pygame.K_DOWN:
                     y_change = 10
 
-            if event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT or event.key == pygame.K_UP or event.type == pygame.K_DOWN:
-                    x_change = 10
-                    y_change = 10
+            elif event.type == pygame.KEYUP:
+                if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT or event.key == pygame.K_UP or event.key == pygame.K_DOWN:
+                    if x_change != 0:
+                        x_change = x_change / abs(x_change)  # 保持移动方向，速度1
+                    if y_change != 0:
+                        y_change = y_change / abs(y_change)
 
-
-            x += x_change
-            y += y_change
-            if x > screenw:
-                x = 0
-            if x < 0:
-                x = screenw
-            if y > screenh:
-                y = 0
-            if y < 0:
-                y = screenh
+        print(x_change)
+        x += x_change
+        y += y_change
+        if x > screenw:
+            x = 0
+        if x < 0:
+            x = screenw
+        if y > screenh:
+            y = 0
+        if y < 0:
+            y = screenh
         screen.fill(black)
         player.set_pos(x, y)  # Blit the player to the screen
         car_group.draw(screen)
         clock.tick(FPS)
         pygame.display.update()
+
 
 if __name__ == '__main__':
     main()
