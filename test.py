@@ -58,57 +58,17 @@ def main():
     go_exit = False
 
     FPS = 60
-    #
+    # pygame.display.flip()
     while not go_exit:
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-
-            if event.type == pygame.KEYDOWN:
-
-                if event.key == pygame.K_LEFT:
-                    x_change = -10
-
-                elif event.key == pygame.K_RIGHT:
-                    x_change = 10
-
-                elif event.key == pygame.K_UP:
-                    y_change = -10
-
-                elif event.key == pygame.K_DOWN:
-                    y_change = 10
-
-            elif event.type == pygame.KEYUP:
-                if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                    y_change = 0
-                    if x_change != 0:
-                        x_change = x_change / abs(x_change)  # 保持移动方向，速度1
-
-                if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                    x_change = 0
-                    if y_change != 0:
-                        y_change = y_change / abs(y_change)
-
-        x += x_change
-        y += y_change
-        if x > screen_w:
-            x = 0
-        if x < 0:
-            x = screen_w
-        if y > screen_h:
-            y = 0
-        if y < 0:
-            y = screen_h
-        screen.fill(black)
-        player.set_pos(x, y)  # Blit the player to the screen
-        car_group.draw(screen)
-        clock.tick(FPS)
-        pygame.display.update()
+            pygame.display.update()
+            car_group.draw(screen)
+            clock.tick(FPS)
 
 
-if __name__ == '__main__':
+if __name__ =='__main__':
     main()
-    pygame.quit()
-    sys.exit()
