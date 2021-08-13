@@ -1,11 +1,6 @@
 import math
 import numpy
+import pygame
 
-
-def main():
-    a = math.sin(numpy.pi / 6)
-    print(a)
-
-
-if __name__ == '__main__':
-    main()
+ball = pygame.image.load("bilibili.ico")
+ballrect = ball.get_rect()

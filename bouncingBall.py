@@ -1,8 +1,6 @@
-import sys, pygame
-
-import interval
+import sys
+import pygame
 from pygame.locals import *
-from interval import Interval
 
 pygame.init()
 

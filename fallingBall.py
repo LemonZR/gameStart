@@ -38,6 +38,7 @@ def main():
         pygame.draw.circle(screen, [100, 0, 0], [x, y], 10)
         pygame.display.update()
         time += 1 / 60
+        clock.tick(60)
 
 
 if __name__ == "__main__":
