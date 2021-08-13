@@ -1,8 +1,9 @@
 import math
 import numpy
 
+
 def main():
-    a = math.sin(numpy.pi/6)
+    a = math.sin(numpy.pi / 6)
     print(a)
 
 
